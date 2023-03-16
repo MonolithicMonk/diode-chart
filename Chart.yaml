@@ -1,6 +1,9 @@
 apiVersion: v2
 name: diode-chart
 description: A Helm chart for Kubernetes
+kubeVersion: '>=1.17.0-0'
+maintainers:
+  - name: Yuki I
 
 # A chart can be either an 'application' or a 'library' chart.
 #
@@ -12,6 +15,9 @@ description: A Helm chart for Kubernetes
 # pipeline. Library charts do not define any templates and therefore cannot be deployed.
 type: application
 
+sources:
+  - "https://github.com/MonolithicMonk/diode-chart"
+
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
@@ -21,4 +27,4 @@ version: 0.1.0
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
 # It is recommended to use it with quotes.
-appVersion: "1.16.0"
+appVersion: "v0.13.0"
