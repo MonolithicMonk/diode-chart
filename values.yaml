@@ -37,8 +37,25 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
+  # Likely true if bind and false if publish
+  enabled:
   type: ClusterIP
-  port: 80
+  port: ""
+  targetPort: ""
+  protocal: 
+
+diodeConfiguration:
+  localServer:
+    diodeHex: ""
+    diodePinata: ""
+    diodeKeyName: ""
+  remoteServer:
+    # Remote diode configuration
+    remoteDiodeHex: ""
+    port: ""
+  command: []
+    # - 
+    
 
 ingress:
   enabled: false
@@ -80,3 +97,4 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
