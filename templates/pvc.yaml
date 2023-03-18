@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "diode-chart.fullname" . }}
+  labels:
+    {{- include "diode-chart.labels" . | nindent 4 }}
+  {{- if .Values.storage.keepPvc }}
+  annotations:
+    "helm.sh/resource-policy": keep
+  {{- end }}
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.storage.size | default "20Mi" | quote }}
