@@ -166,8 +166,15 @@ spec:
                   echo "LOCAL_DB_URL : https://$(diode --dbpath="$LOCAL_DB_PATH" config 2>&1 | awk '/Client address/ { print $5 }').diode.link"
                   tail -f /dev/null
               fi 
+          volumeMounts:
+            - name: {{ include "diode-chart.fullname" . }}
+              mountPath: /go/diode/
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: {{ include "diode-chart.fullname" . }}
+          persistentVolumeClaim:
+            claimName: {{ include "diode-chart.fullname" . }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
