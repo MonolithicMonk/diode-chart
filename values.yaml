@@ -50,12 +50,25 @@ diodeConfiguration:
     diodeHex: ""
     diodePinata: ""
     diodeKeyName: ""
+    # Protocol used for the diode connection. Default: tls.
+    # Options are tcp, udp, tls
     protocol: ""
+    # Options are "public" and "private"
+    publishType: ""
+    # Diode mode. Options are "publish", "bind", and "both"
+    mode: ""
   remoteServer:
     # Remote diode configuration
     remoteDiodeHex: ""
     port: ""
+    # Protocol used for the diode connection. Default: tls.
+    # Options are tcp, udp, tls
     protocol: ""
+    # Type of connection. Default: public. 
+    # Options are "public" and "private"
+    publishType: ""
+    # Only publish for now
+    mode: publish
   config: 
     allowlists: 
     
