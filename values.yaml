@@ -356,3 +356,7 @@ tolerations: []
 
 affinity: {}
 
+storage:
+  keepPvc: true
+  # Size of storage. Default: 20Mi
+  size: "20Mi"
