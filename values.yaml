@@ -40,19 +40,22 @@ service:
   # Likely true if bind and false if publish
   enabled:
   type: ClusterIP
+  clusterIP:
   port: ""
   targetPort: ""
-  protocal: 
+  protocol: 
 
 diodeConfiguration:
   localServer:
     diodeHex: ""
     diodePinata: ""
     diodeKeyName: ""
+    protocol: ""
   remoteServer:
     # Remote diode configuration
     remoteDiodeHex: ""
     port: ""
+    protocol: ""
   config: 
     allowlists: 
     
