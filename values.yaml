@@ -53,9 +53,251 @@ diodeConfiguration:
     # Remote diode configuration
     remoteDiodeHex: ""
     port: ""
-  command: []
-    # - 
+  config: 
+    allowlists: 
     
+    # bool type
+    api: false
+
+     # string type
+    apiaddr: localhost
+
+     # string type
+    bind: ""
+
+     # map type (key: Address, value: bool)
+    blocklists:
+      # 0.0.0.0: true
+
+     # bool type
+    blockprofile:
+
+     # int type
+    blockprofilerate:
+
+     # string type
+    cpuprofile:
+
+     # string type
+    dbpath:
+
+     # bool type
+    debug: false
+
+     # []Address type
+    diodeaddrs:
+
+     # int type
+    e2etimeout: 15s
+
+     # bool type
+    fleet:
+
+     # bool type
+    logdatetime: false
+
+     # string type
+    logfilepath:
+
+     # string type
+    memprofile:
+
+     # bool type
+    metrics: false
+
+     # bool type
+    mutexprofile:
+
+     # int type
+    mutexprofilerate: 1
+
+     # int type
+    pprofport: 0
+
+     # int type
+    retrytimes: 3
+
+     # int type
+    retrywait: 1s
+
+     # int type
+    rlimit_nofile: 0
+
+     # int type
+    timeout: 5s
+
+     # bool type
+    update: true
+  command:
+    bns:
+      account:
+      # Type string
+      # Display the account information of a given BNS name
+      force:
+      # Type
+      # Force re-registration in case of registration, even if the name is already registered.
+      lookup:
+      # Type string
+      # Lookup a given BNS name.
+      register:
+      # Type string
+      # Register a new BNS name with <name>=<address>.
+      transfer:
+      # Type string
+      # Transfer an existing BNS name with <name>=<new_owner>.
+      unregister:
+      # Type string
+      # Free a new BNS name with <name>.
+    config:
+      delete:
+        # deletes the given variable from the config
+      list:
+        # list all stored config keys
+      set:
+        # sets the given variable in the config
+      unsafe:
+        # display private keys (disabled by default)
+
+    fetch:
+      data:
+        # string
+        # The http body that will be transfered.
+        header:
+          # The http header that will be transfered.
+        method: 
+          # string
+          # The http method (GET/POST/DELETE/PUT/OPTION). (default "GET")
+        output:
+          # string
+          # The output file that keep response body.
+        url:
+        #  string
+          # The http request URL.
+        verbose:
+          # Print more information about the connection.
+    gateway:
+      additional_ports:
+        # string
+        # httpsd secure server ports
+      allow_redirect:
+        # allow redirect all http transmission to httpsd
+      certpath:
+        # string
+        # Pem format of certificate file path of httpsd secure server (default "./priv/cert.pem")
+      edge_acme:
+        # allow to use ACME generate certificates automatically
+      edge_acme_email:
+        # string
+        # ACME email configuration
+      fallback:
+        # string
+        # how to resolve web2 addresses (default "localhost")
+      httpd_host:
+        # string
+        # host of httpd server listening to (default "127.0.0.1")
+      httpd_port:
+        # int
+        # port of httpd server listening to (default 80)
+      httpsd_host:
+        # string
+        # host of httpsd server listening to (default "127.0.0.1")
+      httpsd_port:
+        # int
+        # port of httpsd server listening to (default 443)
+      privpath:
+        # string
+        # Pem format of private key file path of httpsd secure server (default "./priv/priv.pem")
+      proxy_host:
+        # string
+        # host of socksd proxy server (default "127.0.0.1")
+      proxy_port:
+        # int
+        # port of socksd proxy server (default 1080)
+      secure:
+        # 
+        # enable httpsd server
+      socksd:
+        # 
+        # enable socksd proxy server
+
+    publish:
+      http:
+        # 
+        # enable http static file server
+      http_dir:
+        # string
+        # the root directory of http static file server
+      http_host:
+        # string
+        # the host of http static file server (default "127.0.0.1")
+      http_port:
+        # int
+        # the port of http static file server (default 8080)
+      indexed:
+        # 
+        # enable directory indexing in http static file server
+      private:
+        # value
+        # expose ports to private users, so that user could connect to
+      protected:
+        # value
+        # expose ports to protected users (in fleet contract), so that user could connect to
+      proxy_host:
+        # string
+        # host of socksd proxy server (default "127.0.0.1")
+      proxy_port:
+        # int
+        # port of socksd proxy server (default 1080)
+      public:
+        # value
+        # expose ports to public users, so that user could connect to
+      socksd:
+        # 
+        # enable socksd proxy server
+
+    reset:
+      experimental:
+        # send transactions of fleet deployment and device allowlist at seme time
+    socksd:
+      fallback:
+        # string
+        # how to resolve web2 addresses (default "localhost")
+      socksd_host:
+        # string
+        # host of socks server listening to (default "127.0.0.1")
+      socksd_port:
+        # int
+        # port of socks server listening to (default 1080)
+
+    time: 
+      # bool
+
+    token:
+      balance:
+        # 
+        # Just check the balance and quit.
+      data:
+        # string
+        # Data that will be submitted with the transaction.
+      gas:
+        # string
+        # Transfer gas paid to diode miner. (default "21000")
+      gasprice:
+        # string
+        # Transfer gas price paid to diode miner.
+      to:
+        # string
+        # The address or BNS name that DIODEs will be transfered to.
+      value:
+        # string
+        # Amount of DIODEs to be transfered.
+
+    update: 
+      # bool
+
+    version:
+      # bool
+
 
 ingress:
   enabled: false
