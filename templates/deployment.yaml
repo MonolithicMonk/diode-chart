@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "diode-chart.fullname" . }}
+  name: {{ include "diode.fullname" . }}
   labels:
-    {{- include "diode-chart.labels" . | nindent 4 }}
+    {{- include "diode.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "diode-chart.selectorLabels" . | nindent 6 }}
+      {{- include "diode.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,13 +18,13 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "diode-chart.selectorLabels" . | nindent 8 }}
+        {{- include "diode.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "diode-chart.serviceAccountName" . }}
+      serviceAccountName: {{ include "diode.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -59,72 +59,72 @@ spec:
             - name: LOCAL_DIODE_SVC_CLUSTERIP
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "diode-chart.fullname" . }}
+                  name: {{ include "diode.fullname" . }}
                   key: LOCAL_DIODE_SVC_CLUSTERIP
             - name: LOCAL_DIODE_SVC_PORT
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "diode-chart.fullname" . }}
+                  name: {{ include "diode.fullname" . }}
                   key: LOCAL_DIODE_SVC_PORT
             - name: LOCAL_DIODE_TARGET_PORT
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "diode-chart.fullname" . }}
+                  name: {{ include "diode.fullname" . }}
                   key: LOCAL_DIODE_TARGET_PORT
             - name: LOCAL_DIODE_HEX
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "diode-chart.fullname" . }}
+                  name: {{ include "diode.fullname" . }}
                   key: LOCAL_DIODE_HEX
             - name: LOCAL_DIODE_PINATA
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "diode-chart.fullname" . }}
+                  name: {{ include "diode.fullname" . }}
                   key: LOCAL_DIODE_PINATA
             - name: LOCAL_DIODE_KEY_NAME
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "diode-chart.fullname" . }}
+                  name: {{ include "diode.fullname" . }}
                   key: LOCAL_DIODE_KEY_NAME
             - name: LOCAL_DIODE_PROTOCOL
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "diode-chart.fullname" . }}
+                  name: {{ include "diode.fullname" . }}
                   key: LOCAL_DIODE_PROTOCOL
             - name: LOCAL_DIODE_MODE
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "diode-chart.fullname" . }}
+                  name: {{ include "diode.fullname" . }}
                   key: LOCAL_DIODE_MODE
             - name: LOCAL_PUBLISH_TYPE
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "diode-chart.fullname" . }}
+                  name: {{ include "diode.fullname" . }}
                   key: LOCAL_PUBLISH_TYPE
             - name: REMOTE_DIODE_HEX
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "diode-chart.fullname" . }}
+                  name: {{ include "diode.fullname" . }}
                   key: REMOTE_DIODE_HEX
             - name: REMOTE_DIODE_PORT
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "diode-chart.fullname" . }}
+                  name: {{ include "diode.fullname" . }}
                   key: REMOTE_DIODE_PORT
             - name: REMOTE_DIODE_HOST
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "diode-chart.fullname" . }}
+                  name: {{ include "diode.fullname" . }}
                   key: REMOTE_DIODE_HOST
             - name: REMOTE_DIODE_PROTOCOL
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "diode-chart.fullname" . }}
+                  name: {{ include "diode.fullname" . }}
                   key: REMOTE_DIODE_PROTOCOL
             - name: REMOTE_PUBLISH_TYPE
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "diode-chart.fullname" . }}
+                  name: {{ include "diode.fullname" . }}
                   key: REMOTE_PUBLISH_TYPE
           args:
             - |
@@ -167,14 +167,14 @@ spec:
                   tail -f /dev/null
               fi 
           volumeMounts:
-            - name: {{ include "diode-chart.fullname" . }}
+            - name: {{ include "diode.fullname" . }}
               mountPath: /go/diode/
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
-        - name: {{ include "diode-chart.fullname" . }}
+        - name: {{ include "diode.fullname" . }}
           persistentVolumeClaim:
-            claimName: {{ include "diode-chart.fullname" . }}
+            claimName: {{ include "diode.fullname" . }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "diode-chart.fullname" . }}
+  name: {{ include "diode.fullname" . }}
   labels:
-    {{- include "diode-chart.labels" . | nindent 4 }}
+    {{- include "diode.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "diode-chart.fullname" . }}
+    name: {{ include "diode.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:
