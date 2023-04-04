@@ -60,3 +60,44 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Generate the diode command
+*/}}
+{{- define "diode-command" -}}
+{{- $finalCommand := "" }}
+{{- range $item := .Values.cli }}
+  {{- $options := "" }}
+  {{- $command := "" }}
+  {{- $optionList := "" }}
+  {{- range $option := $item.options }}
+    {{- $value := $option.value }}
+    {{- $match := $value | regexMatch "(?i)localServer\\.base64PrivateKey\\..*" }}
+    {{- if $match }}
+      {{- $envVar := $value | upper | replace "." "_" | printf "/go/diode/%s" }}
+      {{- $value = $envVar }}
+    {{- end }}
+    {{- $optionList = printf "%s -%s %s" $optionList $option.key $value }}
+  {{- end }}
+  {{- $options = printf "%s %s" $options $optionList }}
+  {{- range $key, $value := $item.command }}
+    {{- $command = printf "%s %s" $command $key }}
+    {{- if gt (len $value) 0 }}
+    {{- range $arg := $value }}
+      {{- $value := $arg.value }}
+      {{- $match := $value | regexMatch "(?i)localServer\\.base64PrivateKey\\..*" }}
+      {{- if $match }}
+        {{- $envVar := $value | upper | replace "." "_" | printf "/go/diode/%s" }}
+        {{- $value = $envVar }}
+      {{- end }}
+      {{- $command = printf "%s -%s %s" $command $arg.key $value }}
+    {{- end }}
+    {{- end }}
+  {{- end }}
+  {{- $diodeCommand := printf "diode %s %s >/dev/null 2>&1 &" $options $command }}
+  {{- $finalCommand = printf "%s %s\n" $finalCommand $diodeCommand }}
+{{- end }}
+{{- $finalCommand }}
+{{- end }}
+
+
