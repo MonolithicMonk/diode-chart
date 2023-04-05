@@ -33,10 +33,28 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- if .Values.service.enabled }}
           ports:
-            - name: http
-              containerPort: {{ .Values.service.targetPort }}
-              protocol: TCP
+            {{- if eq .Values.service.type "ClusterIP" }}
+            {{- range $port := .Values.service.clusterIP.ports }}
+            - name: {{ $port.name }}
+              containerPort: {{ $port.targetPort }}
+              protocol: {{ $port.protocol }}
+            {{- end }}
+            {{- end }}
+            {{- else if eq .Values.service.type "LoadBalancer" }}
+            {{- range $port := .Values.service.loadBalancer.ports }}
+            - name: {{ $port.name }}
+              containerPort: {{ $port.targetPort }}
+              protocol: {{ $port.protocol }}
+            {{- end }}
+            {{- else if eq .Values.service.type "NodePort" }}
+            {{- range $port := .Values.service.nodePort.ports }}
+            - name: {{ $port.name }}
+              containerPort: {{ $port.targetPort }}
+              protocol: {{ $port.protocol }}
+            {{- end }}
+          {{- end }}
           readinessProbe:
             exec:
               command:

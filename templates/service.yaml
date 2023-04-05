@@ -7,14 +7,46 @@ metadata:
     {{- include "diode.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
-  {{- if .Values.service.clusterIP }}
-  clusterIP: {{ .Values.service.clusterIP }}
+  {{- if eq .Values.service.type "ClusterIP" }}
+  {{- if .Values.service.clusterIP.ip }}
+  clusterIP: {{ .Values.service.clusterIP.ip }}
+  {{- end }}
+  {{- end }}
+  {{- if eq .Values.service.type "LoadBalancer" }}
+  {{- if .Values.service.loadBalancer.ip }}
+  clusterIP: {{ .Values.service.loadBalancer.ip }}
+  {{- end }}
+  {{- end }}
+  {{- if eq .Values.service.type "NodePort" }}
+  {{- if .Values.service.nodePort.ip }}
+  nodeIP: {{ .Values.service.nodePort.ip }}
+  {{- end }}
   {{- end }}
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: {{ .Values.service.targetPort }}
-      protocol: {{ .Values.service.protocol }}
-      name: http
+    {{- if eq .Values.service.type "ClusterIP" }}
+    {{- range .Values.service.clusterIP.ports }}
+    - port: {{ .port }}
+      targetPort: {{ .targetPort }}
+      protocol: {{ .protocol }}
+      name: {{ .name }}
+    {{- end }}
+    {{- end }}
+    {{- if eq .Values.service.type "LoadBalancer" }}
+    {{- range .Values.service.loadBalancer.ports }}
+    - port: {{ .port }}
+      targetPort: {{ .targetPort }}
+      protocol: {{ .protocol }}
+      name: {{ .name }}
+    {{- end }}
+    {{- end }}
+    {{- if eq .Values.service.type "NodePort" }}
+    {{- range .Values.service.nodePort.ports }}
+    - port: {{ .port }}
+      targetPort: {{ .targetPort }}
+      protocol: {{ .protocol }}
+      name: {{ .name }}
+    {{- end }}
+    {{- end }}
   selector:
     {{- include "diode.selectorLabels" . | nindent 4 }}
 {{- end }}
