@@ -59,8 +59,50 @@ spec:
           
           args:
             - |
-              echo "Diode is starting"
+              echo -e "Diode is starting...\n"
               {{ include "diode-command" . | nindent 14 }}
+              {{- if .Values.logging.displayAddress.enabled }}
+                echo -e "ADDRESSES: \n"
+                {{- if .Values.localServer.base64PrivateKey.one }}
+                  echo -e "=============================================================================\n"
+                  echo "KEY 1 ADDRESS : https://$(diode --dbpath /go/diode/LOCALSERVER_BASE64PRIVATEKEY_ONE config 2>&1 | awk '/Client address/ { print $5 }').diode.link"
+                {{- end }}
+                {{- if .Values.localServer.base64PrivateKey.two }}
+                  echo -e "=============================================================================\n"
+                  echo "KEY 2 ADDRESS : https://$(diode --dbpath /go/diode/LOCALSERVER_BASE64PRIVATEKEY_TWO config 2>&1 | awk '/Client address/ { print $5 }').diode.link"
+                {{- end }}
+                {{- if .Values.localServer.base64PrivateKey.three }}
+                  echo -e "=============================================================================\n"
+                  echo "KEY 3 ADDRESS : https://$(diode --dbpath /go/diode/LOCALSERVER_BASE64PRIVATEKEY_THREE config 2>&1 | awk '/Client address/ { print $5 }').diode.link"
+                {{- end }}
+                {{- if .Values.localServer.base64PrivateKey.four }}
+                  echo -e "=============================================================================\n"
+                  echo "KEY 4 ADDRESS : https://$(diode --dbpath /go/diode/LOCALSERVER_BASE64PRIVATEKEY_FOUR config 2>&1 | awk '/Client address/ { print $5 }').diode.link"
+                {{- end }}
+                {{- if .Values.localServer.base64PrivateKey.five }}
+                  echo -e "=============================================================================\n"
+                  echo "KEY 5 ADDRESS : https://$(diode --dbpath /go/diode/LOCALSERVER_BASE64PRIVATEKEY_FIVE config 2>&1 | awk '/Client address/ { print $5 }').diode.link"
+                {{- end }}
+                echo -e "\n"
+                echo -e "End Addreses\n"
+              {{- end }}
+
+              {{- if .Values.logging.displayProcess.enabled }}
+                echo -e "Confirm diode is running...\n"
+                # Get the list of processes matching the regex
+                processes=$(ps aux | egrep "\-dbpath\s+\/\w+\/\w+\/LOCALSERVER_BASE64PRIVATEKEY" | grep -v "grep >/dev/null" | awk '/root/ { for(i=8; i<=NF; i++) { printf("%s ", $i) } print "" }')
+
+                # Count the number of matching processes
+                count=$(echo "$processes" | wc -l)
+
+                # Print the count
+                echo "Number of running diode processes: $count"
+
+                # Iterate over each matching process and print its details
+                echo "$processes" | while read -r process; do
+                  echo "Process details: $process"
+                done
+              {{- end }}
               tail -f /dev/null 
           volumeMounts:
             - name: {{ include "diode.fullname" . }}

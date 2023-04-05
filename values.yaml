@@ -46,6 +46,11 @@ service:
   targetPort: 8080
   protocol: TCP
 
+logging:
+  displayAddress:
+    enabled: true
+  displayProcess:
+    enabled: false
 
 localServer:
   base64PrivateKey: 
