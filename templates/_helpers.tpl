@@ -72,7 +72,7 @@ Generate the diode command
   {{- $optionList := "" }}
   {{- range $option := $item.options }}
     {{- $value := $option.value }}
-    {{- $match := $value | regexMatch "(?i)localServer\\.base64PrivateKey\\..*" }}
+    {{- $match := $value | regexMatch "base64PrivateKey\\..*" }}
     {{- if $match }}
       {{- $envVar := $value | upper | replace "." "_" | printf "/go/diode/%s" }}
       {{- $value = $envVar }}
@@ -85,7 +85,7 @@ Generate the diode command
     {{- if gt (len $value) 0 }}
     {{- range $arg := $value }}
       {{- $value := $arg.value }}
-      {{- $match := $value | regexMatch "(?i)localServer\\.base64PrivateKey\\..*" }}
+      {{- $match := $value | regexMatch "base64PrivateKey\\..*" }}
       {{- if $match }}
         {{- $envVar := $value | upper | replace "." "_" | printf "/go/diode/%s" }}
         {{- $value = $envVar }}

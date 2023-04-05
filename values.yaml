@@ -50,41 +50,43 @@ logging:
   displayAddress:
     enabled: true
   displayProcess:
-    enabled: false
+    enabled: true
 
-localServer:
-  base64PrivateKey: 
-    one: |
-      09T5rBACDmxhc3RfdXBkYXRlX2F0BGQrYm4HcHJpdmF0Zd8BLS0tLS1CRUdJTiBFQyBQUklWQVRF
-      IEtFWS0tLS0tCk1IUUNBUUVFSUxYUmxNUG92ZERtMHdIZTYyR3JhZWxTMmNmcUpuWnEvMmpLL2Qy
-      eng4T2ZvQWNHQlN1QkJBQUsKb1VRRFFnQUVUNjFTZ2RONFFxc0k4ODRPVjJrVC9vN3VPRFFCbTZJ
-      akxoY0dpcDl6Rm1vNmk4cGlWWTFrTnNhYwp2YW5QM3VqMzdKMUxhdk5mZklDSWcvOThKcDFnZUE9
-      PQotLS0tLUVORCBFQyBQUklWQVRFIEtFWS0tLS0tCg==
-    two: |
-      09T5rBACDmxhc3RfdXBkYXRlX2F0BGQrkVYHcHJpdmF0Zd8BLS0tLS1CRUdJTiBFQyBQUklWQVRF
-      IEtFWS0tLS0tCk1IUUNBUUVFSUlWdjVYRGpiamVjZ1g1TGN6R2ZydEMyc2hDbnJqcjRaWnAzc0xZ
-      MTliYWlvQWNHQlN1QkJBQUsKb1VRRFFnQUUrSXJWUWxKTThFVnB3R1hmb1ZKQW5ESXdhOHAyeUVV
-      MEFidE9ZQjc3MFlmWGlLRDdOT3YvQ0w2aQpWdmxVU29CczlFNk0xMHVNY0pxOVlDK2dOR0M1TlE9
-      PQotLS0tLUVORCBFQyBQUklWQVRFIEtFWS0tLS0tCg==
-    three: |
-      09T5rBACDmxhc3RfdXBkYXRlX2F0BGQrkVYHcHJpdmF0Zd8BLS0tLS1CRUdJTiBFQyBQUklWQVRF
-      IEtFWS0tLS0tCk1IUUNBUUVFSUlWdjVYRGpiamVjZ1g1TGN6R2ZydEMyc2hDbnJqcjRaWnAzc0xZ
-      MTliYWlvQWNHQlN1QkJBQUsKb1VRRFFnQUUrSXJWUWxKTThFVnB3R1hmb1ZKQW5ESXdhOHAyeUVV
-      MEFidE9ZQjc3MFlmWGlLRDdOT3YvQ0w2aQpWdmxVU29CczlFNk0xMHVNY0pxOVlDK2dOR0M1TlE9
-      PQotLS0tLUVORCBFQyBQUklWQVRFIEtFWS0tLS0tCg==
-    four:
-    five:
+# base64 encoded diode private keys for dbpath
+# Add up to 5 keys
+base64PrivateKey: 
+  one: |
+    09T5rBACDmxhc3RfdXBkYXRlX2F0BGQrYm4HcHJpdmF0Zd8BLS0tLS1CRUdJTiBFQyBQUklWQVRF
+    IEtFWS0tLS0tCk1IUUNBUUVFSUxYUmxNUG92ZERtMHdIZTYyR3JhZWxTMmNmcUpuWnEvMmpLL2Qy
+    eng4T2ZvQWNHQlN1QkJBQUsKb1VRRFFnQUVUNjFTZ2RONFFxc0k4ODRPVjJrVC9vN3VPRFFCbTZJ
+    akxoY0dpcDl6Rm1vNmk4cGlWWTFrTnNhYwp2YW5QM3VqMzdKMUxhdk5mZklDSWcvOThKcDFnZUE9
+    PQotLS0tLUVORCBFQyBQUklWQVRFIEtFWS0tLS0tCg==
+  two: |
+    09T5rBACDmxhc3RfdXBkYXRlX2F0BGQrkVYHcHJpdmF0Zd8BLS0tLS1CRUdJTiBFQyBQUklWQVRF
+    IEtFWS0tLS0tCk1IUUNBUUVFSUlWdjVYRGpiamVjZ1g1TGN6R2ZydEMyc2hDbnJqcjRaWnAzc0xZ
+    MTliYWlvQWNHQlN1QkJBQUsKb1VRRFFnQUUrSXJWUWxKTThFVnB3R1hmb1ZKQW5ESXdhOHAyeUVV
+    MEFidE9ZQjc3MFlmWGlLRDdOT3YvQ0w2aQpWdmxVU29CczlFNk0xMHVNY0pxOVlDK2dOR0M1TlE9
+    PQotLS0tLUVORCBFQyBQUklWQVRFIEtFWS0tLS0tCg==
+  three: |
+    09T5rBACDmxhc3RfdXBkYXRlX2F0BGQrkVYHcHJpdmF0Zd8BLS0tLS1CRUdJTiBFQyBQUklWQVRF
+    IEtFWS0tLS0tCk1IUUNBUUVFSUlWdjVYRGpiamVjZ1g1TGN6R2ZydEMyc2hDbnJqcjRaWnAzc0xZ
+    MTliYWlvQWNHQlN1QkJBQUsKb1VRRFFnQUUrSXJWUWxKTThFVnB3R1hmb1ZKQW5ESXdhOHAyeUVV
+    MEFidE9ZQjc3MFlmWGlLRDdOT3YvQ0w2aQpWdmxVU29CczlFNk0xMHVNY0pxOVlDK2dOR0M1TlE9
+    PQotLS0tLUVORCBFQyBQUklWQVRFIEtFWS0tLS0tCg==
+  four:
+  five:
 
 # Use a list of options and command properties to construct a diode cli command
-# The example below will generate this commands: 
-#  diode   -dbpath /go/diode/LOCALSERVER_BASE64PRIVATEKEY_ONE  publish -public 5445:5455 -public 5666:5666 >/dev/null 2>&1 &
-#  diode   -bind 4005:0xfbd2428cedb9c69758eb809e7ba7efbda50bee5a:4005 -dbpath /go/diode/LOCALSERVER_BASE64PRIVATEKEY_TWO  publish >/dev/null 2>&1 &
-#  diode   -dbpath /go/diode/LOCALSERVER_BASE64PRIVATEKEY_THREE -bind 5566:0xfbd2428cedb9c69758eb809e7ba7efbda50bee5a:5566  publish >/dev/null 2>&1 &
-# To use a specific private key for your dbpath eg the first one, reference it like so: base64PrivateKey.one
+# The example below will generate these commands: 
+#  diode   -dbpath /go/diode/BASE64PRIVATEKEY_ONE  publish -public 5445:5455 -public 5666:5666 >/dev/null 2>&1 &
+#  diode   -bind 4005:0xfbd2428cedb9c69758eb809e7ba7efbda50bee5a:4005 -dbpath /go/diode/BASE64PRIVATEKEY_TWO  publish >/dev/null 2>&1 &
+#  diode   -dbpath /go/diode/BASE64PRIVATEKEY_THREE -bind 5566:0xfbd2428cedb9c69758eb809e7ba7efbda50bee5a:5566  publish >/dev/null 2>&1 &
+# To use a specific private key for your dbpath eg the first one, 
+# reference it like so: base64PrivateKey.one
 cli:
   - options:
       - key: dbpath
-        value: localServer.base64PrivateKey.one
+        value: base64PrivateKey.one
     command:
       publish:
         - key: public
@@ -95,12 +97,12 @@ cli:
       - key: bind
         value: 2020:0xfbd2428cedb9c69758eb809e7ba7efbda50bee5a:4005
       - key: dbpath
-        value: localServer.base64PrivateKey.two
+        value: base64PrivateKey.two
     command:
       publish: ""
   - options:
       - key: dbpath
-        value: localServer.base64PrivateKey.three
+        value: base64PrivateKey.three
       - key: bind
         value: 2020:0xfbd2428cedb9c69758eb809e7ba7efbda50bee5a:5566
     command:
