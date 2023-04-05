@@ -42,19 +42,18 @@ spec:
               command:
                 - bash
                 - -c
-                - |
-                  ps aux | egrep "\-dbpath\s+\/\w+\/\w+\/\w+\s+" | grep -v "grep >/dev/null"
+                - cat /go/diode/probe-check | bash
             initialDelaySeconds: 15
-            periodSeconds: 10
+            periodSeconds: 30
             failureThreshold: 10 
           livenessProbe: 
             exec:
               command:
               - bash
               - '-c'
-              - |
-                ps aux | egrep "\-dbpath\s+\/\w+\/\w+\/\w+\s+" | grep -v "grep >/dev/null"
-            periodSeconds: 10
+              - cat /go/diode/probe-check | bash
+            initialDelaySeconds: 20
+            periodSeconds: 30
             failureThreshold: 10
           
           args:
